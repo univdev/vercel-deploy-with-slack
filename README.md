@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Deploy with Slack notifications
-        uses: your-username/vercel-deploy-with-slack@v1
+        uses: univdev/vercel-deploy-with-slack@v1
         with:
           vercel-token-id: ${{ secrets.VERCEL_TOKEN }}
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
