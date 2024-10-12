@@ -1,0 +1,24 @@
+name: vercel-deploy-with-slack
+description: Github Action for Vercel Distribution and Slack Message Transfer
+inputs:
+  vercel-token-id:
+    description: 'Vercel API token for authenticating deployment requests.'
+    required: true
+  slack-webhook-url:
+    description: 'Slack Incoming Webhook URL for sending deployment status updates.'
+    required: true
+  slack-deploy-start-message-payload:
+    description: 'Custom payload for the message to be sent when the deployment starts.'
+    required: true
+  slack-deploy-failed-message-payload:
+    description: 'Custom payload for the message to be sent if the deployment fails.'
+    required: true
+  slack-deploy-success-message-payload:
+    description: 'Custom payload for the message to be sent when the deployment succeeds.'
+    required: true
+outputs:
+  process-time:
+    description: 'The total time taken to complete the deployment process.'
+runs:
+  using: 'node20'
+  main: 'dist/main'
