@@ -11,5 +11,12 @@ export default defineConfig({
       name: 'VercelDeployWithSlack',
       fileName: 'vercel-deploy-with-slack'
     },
+    outDir: 'dist',
+    rollupOptions: {
+      treeshake: true,
+      output: {
+        entryFileNames: 'index.js',
+      },
+    },
   },
 });
