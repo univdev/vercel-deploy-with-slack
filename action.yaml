@@ -13,7 +13,7 @@ inputs:
   slack-deploy-failed-message-payload:
     description: 'Custom payload for the message to be sent if the deployment fails.'
     required: true
-  slack-deploy-success-message-payload:
+  slack-deploy-succeed-message-payload:
     description: 'Custom payload for the message to be sent when the deployment succeeds.'
     required: true
 outputs:
