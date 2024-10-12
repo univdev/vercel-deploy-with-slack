@@ -7,8 +7,7 @@
   "author": "univdev <pcydeveloper@gmail.com>",
   "license": "ISC",
   "scripts": {
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "tsc && vite build"
   },
   "devDependencies": {
     "typescript": "^5.5.3",
