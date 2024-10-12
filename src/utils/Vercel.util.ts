@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import * as child from 'child_process';
 
 export class Vercel {
   token: string;
@@ -9,7 +9,7 @@ export class Vercel {
 
   pull() {
     return new Promise((resolve, reject) => {
-      exec(
+      child.exec(
         `npx vercel build --token=${this.token} --yes`,
         (error, stdout) => {
           if (error) {
@@ -25,7 +25,7 @@ export class Vercel {
 
   build() {
     return new Promise((resolve, reject) => {
-      exec(
+      child.exec(
         `npx vercel build --token=${this.token}`,
         (error, stdout) => {
           if (error) {
@@ -41,7 +41,7 @@ export class Vercel {
 
   deploy() {
     return new Promise((resolve, reject) => {
-      exec(
+      child.exec(
         `npx vercel --token=${this.token} --prod`,
         (error, stdout) => {
           if (error) {

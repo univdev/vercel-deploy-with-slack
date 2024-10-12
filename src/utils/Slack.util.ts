@@ -1,4 +1,4 @@
-import { exec } from "child_process";
+import * as child from "child_process";
 
 export class Slack {
   webhookUrl: string;
@@ -9,7 +9,7 @@ export class Slack {
 
   send(payload: string) {
     return new Promise((resolve, reject) => {
-      exec(
+      child.exec(
         `curl -X POST -H 'Content-type: application/json' --data '${payload}'`,
         (error, stdout) => {
           if (error) {
