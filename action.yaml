@@ -6,20 +6,29 @@ inputs:
     required: true
   slack-webhook-url:
     description: 'Slack Incoming Webhook URL for sending deployment status updates.'
-    required: true
+    required: false
   slack-deploy-start-message-payload:
     description: 'Custom payload for the message to be sent when the deployment starts.'
-    required: true
+    required: false
   slack-deploy-failed-message-payload:
     description: 'Custom payload for the message to be sent if the deployment fails.'
-    required: true
+    required: false
   slack-deploy-succeed-message-payload:
     description: 'Custom payload for the message to be sent when the deployment succeeds.'
-    required: true
+    required: false
+  slack-deploy-start-message-payload-file:
+    description: 'Path to a file containing the custom payload for the message to be sent when the deployment starts. This will override the inline payload if both are set.'
+    required: false
+  slack-deploy-failed-message-payload-file:
+    description: 'Path to a file containing the custom payload for the message to be sent if the deployment fails. This will override the inline payload if both are set.'
+    required: false
+  slack-deploy-succeed-message-payload-file:
+    description: 'Path to a file containing the custom payload for the message to be sent when the deployment succeeds. This will override the inline payload if both are set.'
+    required: false
 outputs:
   process-time:
     description: 'The total time taken to complete the deployment process.'
 runs:
   using: 'node20'
-  pre: 'npm build'
+  pre: 'npm install && npm build'
   main: 'dist/index.js'
