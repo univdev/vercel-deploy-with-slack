@@ -1,9 +1,9 @@
-import { resolve } from 'path';
+import p from 'path';
 
 export class GithubPath {
   static workspacePath(path?: string) {
     return path
-      ? resolve(process.env.GITHUB_WORKSPACE as string, path)
+      ? p.resolve(process.env.GITHUB_WORKSPACE as string, path)
       : undefined;
   }
 }
