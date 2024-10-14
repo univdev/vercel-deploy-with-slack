@@ -1,7 +1,7 @@
 {
   "name": "vercel-deploy-with-slack",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Github Action for Vercel Distribution and Slack Message Transfer",
   "main": "dist/index.js",
   "author": "univdev <pcydeveloper@gmail.com>",
