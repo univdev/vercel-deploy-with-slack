@@ -30,5 +30,5 @@ outputs:
     description: 'The total time taken to complete the deployment process.'
 runs:
   using: 'node20'
-  pre: 'npm install && npm build'
+  pre: './pre.sh'
   main: 'dist/index.js'
