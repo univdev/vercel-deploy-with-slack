@@ -1,9 +1,9 @@
-import p from 'path';
+import require$$1 from 'path';
 
 class GithubPath {
     static workspacePath(path) {
         return path
-            ? p.resolve(process.env.GITHUB_WORKSPACE, path)
+            ? require$$1.resolve(process.env.GITHUB_WORKSPACE, path)
             : undefined;
     }
 }

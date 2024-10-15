@@ -1,9 +1,9 @@
-import * as fs from 'fs';
+import * as require$$1 from 'fs';
 
 class JsonReader {
     read(file, parse = false) {
         return new Promise((resolve, reject) => {
-            fs.readFile(file, (err, buffer) => {
+            require$$1.readFile(file, (err, buffer) => {
                 if (err) {
                     reject(`Could not read the file: ${err}`);
                     return;
