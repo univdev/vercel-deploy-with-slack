@@ -10,7 +10,7 @@ export class Slack {
   send(payload: string) {
     return new Promise((resolve, reject) => {
       child.exec(
-        `curl -X POST -H 'Content-type: application/json' --data '${payload}'`,
+        `curl -X POST -H 'Content-type: application/json' --data '${payload}' ${this.webhookUrl}`,
         (error, stdout) => {
           if (error) {
             reject(`Failed send slack message: ${error}`);

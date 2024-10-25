@@ -27263,28 +27263,48 @@ async function run() {
     const slack = slackWebhookUrl ? new Slack(slackWebhookUrl) : null;
     const vercel = new Vercel(vercelTokenId);
     try {
-        if (slackStartPayloadFile)
+        if (slackStartPayloadFile) {
+            core.info('Exporting Starting message...');
             slackStartPayload = await jsonReader.read(slackStartPayloadFile);
-        if (slackSuccessPayloadFile)
-            slackSuccessPayload = await jsonReader.read(slackSuccessPayloadFile);
-        if (slack !== null && slackStartPayload)
+            core.info('Exported Starting message!');
+        }
+        if (slackSuccessPayloadFile) {
+            core.group('Get Succeed message for Slack Notification from File', async () => {
+                core.info('Exporting Succeed message...');
+                slackSuccessPayload = await jsonReader.read(slackSuccessPayloadFile);
+                core.info('Exported Succeed message!');
+            });
+        }
+        if (slack !== null && slackStartPayload) {
+            core.info('Send Starting message to Slack');
             await slack.send(slackStartPayload);
+        }
+        core.info('processing deploy to Vercel');
         await vercel.pull();
         await vercel.build();
         await vercel.deploy();
+        core.info('Send Succeed message to Slack');
         if (slack !== null && slackSuccessPayload)
             await slack.send(slackSuccessPayload);
+        core.info('All processes are done!');
         core.setOutput('process-time', runtimeCounter.stop());
     }
     catch (error) {
         if (error instanceof Error) {
             core.setFailed(error.message);
-            if (slackFailurePayloadFile)
-                slackFailurePayload = await jsonReader.read(slackFailurePayloadFile);
-            if (slack !== null && slackFailurePayload)
-                slack.send(slackFailurePayload);
         }
+        else if (typeof error === 'string') {
+            core.setFailed(error);
+        }
+        else {
+            core.setFailed('Deploy failed!');
+        }
+        if (slackFailurePayloadFile)
+            slackFailurePayload = await jsonReader.read(slackFailurePayloadFile);
+        if (slack !== null && slackFailurePayload)
+            slack.send(slackFailurePayload);
     }
 }
+run();
 
-export { run as default };
+export { run };
