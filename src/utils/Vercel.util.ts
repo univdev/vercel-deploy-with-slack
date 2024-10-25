@@ -7,26 +7,10 @@ export class Vercel {
     this.token = token;
   }
 
-  pull() {
-    return new Promise((resolve, reject) => {
-      child.exec(
-        `npx vercel build --token=${this.token} --yes`,
-        (error, stdout) => {
-          if (error) {
-            reject(`Failed pull environment from Vercel: ${error}`)
-            return;
-          }
-
-          resolve(stdout);
-        }
-      );
-    });
-  }
-
   build() {
     return new Promise((resolve, reject) => {
       child.exec(
-        `npx vercel build --token=${this.token}`,
+        `npx vercel build --prod --token=${this.token} --yes`,
         (error, stdout) => {
           if (error) {
             reject(`Build failed: ${error}`);
@@ -42,7 +26,7 @@ export class Vercel {
   deploy() {
     return new Promise((resolve, reject) => {
       child.exec(
-        `npx vercel --token=${this.token} --prod`,
+        `npx vercel --token=${this.token} --prod --yes`,
         (error, stdout) => {
           if (error) {
             reject(`Deploy failed: ${error}`);

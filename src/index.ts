@@ -52,7 +52,6 @@ export async function run() {
     }
 
     core.info('processing deploy to Vercel');
-    await vercel.pull();
     await vercel.build();
     await vercel.deploy();
 
