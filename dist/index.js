@@ -27280,7 +27280,6 @@ async function run() {
             await slack.send(slackStartPayload);
         }
         core.info('processing deploy to Vercel');
-        await vercel.pull();
         await vercel.build();
         await vercel.deploy();
         core.info('Send Succeed message to Slack');
